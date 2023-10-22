@@ -7,18 +7,20 @@
 </head>
 <body>
 <header>
-    <ul>
-        <li><a href="/"> Home</a></li>
-        <li><a href="/draw"> Add Draw</a></li>
+     <ul class="nav">
+        <li class="nav-item"><a href="/"> Home</a></li>
+        <li class="nav-item"><a href="/draw"> Add Draw</a></li>
+        <li class="nav-item"><a href="/prediction"> Prediction</a></li>
     </ul>
 </header>
-<div>
-    <h1>Symbol Drawn</h1>
+<h1>Symbol Drawn</h1>
+<div class="symbols">
+
     <img src="data:image/png;base64,{{ img_data}}" alt="symbol-drawn"/>
 </div>
-<ul>
+<ul style="display: flex; flex-direction: row; justify-content: center;">
     {% for num in nums %}
-    <li>{{ num }}% {{ symbols[loop.index0]}} </li>
+    <li style="padding: 15px">{{ num }}% {{ symbols[loop.index0]}} </li>
     {% endfor %}
 </ul>
 </body>

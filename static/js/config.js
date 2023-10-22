@@ -31,7 +31,7 @@ function draw(e) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 5;
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
 
@@ -60,7 +60,7 @@ function getCanvas() {
             random_symbol = symbols_chinese[Math.floor(Math.random() * symbols_chinese.length)];
             message.innerHTML = 'Draw ' + random_symbol + ' symbol';
             clearCanvas();
-            alert('Imagen guardada exitosamente.');
+
         } else {
             alert('Error al guardar la imagen.');
         }
@@ -85,15 +85,15 @@ function predict() {
 
     const formData = new FormData();
     formData.append('myImage', imageDataURL);
-    fetch('/prediction', {
+    fetch('/predict', {
         method: 'POST',
         body: formData
-    }).then(response => {
-        if (response.status === 200) {
-            alert('Imagen guardada exitosamente.');
-        } else {
-            alert('Error al guardar la imagen.');
-        }
-    });
+    }).then(response => response.text())
+        .then(html=>{
+            document.body.innerHTML = html;
+        })
+        .catch(
+            error => console.error('Error:', error)
+        )
 
 }

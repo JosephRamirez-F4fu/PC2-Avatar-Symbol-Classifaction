@@ -1,8 +1,10 @@
 *{
     margin: 0;
     padding: 0;
+    text-decoration: none;
+    list-style-type: none;
 }
-ul {
+.nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -16,7 +18,7 @@ a{
     text-decoration: none;
     color: #fff;
 }
-li {
+.nav-item {
     padding: 10px;
 }
 
