@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Avatar Simbols</title>
+    <link rel="stylesheet" href="/static/css/styless.css">
+
+</head>
+<body>
+<header>
+    <ul>
+        <li><a href="/index"> Home</a></li>
+        <li><a href="/draw"> Add Draw</a></li>
+        <li><a href="/prediction"> Prediction</a></li>
+    </ul>
+</header>
+<h1 id="message">Dibujando...</h1>
+<div class="canvas-container">
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+</div>
+<div class="button-container">
+    <button class="button" id="btnClear" onclick="clearCanvas()">Clear</button>
+    <button class="button" id="btnPredict" onclick="getCanvas()">send draw</button>
+
+</div>
+<script src="/static/js/config.js"></script>
+
+</body>
+</html>
