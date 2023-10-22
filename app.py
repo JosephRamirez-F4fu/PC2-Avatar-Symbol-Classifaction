@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 
 # load index
-@app.route('/index')
+@app.route('/')
 def main_page():
     return render_template('index.html')
 
@@ -124,7 +124,7 @@ def show_predictions():
     nums = [float(componente) for componente in componentes]
     symbols = ['air', 'fire', 'water', 'earth']
     if img_data is not None:
-        return render_template('prediction.html', nums=nums, frutas=symbols, img_data=img_data)
+        return render_template('results.html', nums=nums, symbols=symbols, img_data=img_data)
     else:
         return redirect("/", code=302)
 

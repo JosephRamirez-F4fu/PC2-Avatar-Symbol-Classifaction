@@ -35,6 +35,11 @@ p{
     background-color: #333;
     color: #fff;
 }
+.symbols{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
 div>img{
     width: 25%;

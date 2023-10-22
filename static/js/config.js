@@ -1,12 +1,14 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 let painting = false;
-const symbols_chinese = ['air', 'water', 'fire', 'earth'];
+const symbols_chinese = ['air', 'fire', 'water', 'earth'];
 
 let random_symbol = symbols_chinese[Math.floor(Math.random() * symbols_chinese.length)];
 
 let message = document.getElementById('message');
-message.innerHTML = 'Draw ' + random_symbol + ' symbol';
+if(message != null){
+    message.innerHTML = 'Draw ' + random_symbol + ' symbol';
+}
 
 
 canvas.addEventListener('mousedown', (e) => {
@@ -68,7 +70,7 @@ function getCanvas() {
 
 function prepare_model(){
     fetch('/prepare', {
-        method: 'POST',
+        method: 'GET',
     }).then(response => {
         if (response.status === 200) {
             alert('Modelo preparado exitosamente.');
@@ -78,7 +80,7 @@ function prepare_model(){
     });
 }
 
-function getCanvas_to_predict() {
+function predict() {
     const imageDataURL = canvas.toDataURL('image/png');
 
     const formData = new FormData();

@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/static/css/styless.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<header>
+    <ul>
+        <li><a href="/"> Home</a></li>
+        <li><a href="/draw"> Add Draw</a></li>
+    </ul>
+</header>
+<div>
+    <h1>Symbol Drawn</h1>
+    <img src="data:image/png;base64,{{ img_data}}" alt="symbol-drawn"/>
+</div>
+<ul>
+    {% for num in nums %}
+    <li>{{ num }}% {{ symbols[loop.index0]}} </li>
+    {% endfor %}
+</ul>
 </body>
 </html>
