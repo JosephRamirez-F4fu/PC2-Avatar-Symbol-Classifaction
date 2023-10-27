@@ -114,7 +114,7 @@ def prediction_model():
 
     imagen = io.imread(tmp_file_path)
     imagen = imagen[:, :, 3]
-    size = (128, 128)
+    size = (28, 28)
     image = imagen / 255.0
     im = resize(image, size)
     im = im[:, :, np.newaxis]
