@@ -1,13 +1,18 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 let painting = false;
-const symbols_chinese = ['air', 'fire', 'water', 'earth'];
-
-let random_symbol = symbols_chinese[Math.floor(Math.random() * symbols_chinese.length)];
-
+const symbols_alphabets = ['ma', 'mb', 'mc', 'md', 'me', 'mf', 'mg', 'mh', 'mi', 'mj', 'mk', 'ml', 'mm', 'mn', 'mo', 'mp', 'mq',
+    'mr', 'ms', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'ba', 'bb', 'bc', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bk', 'bl', 'bm', 'bn',
+    'bo', 'bp', 'bq', 'br', 'bs', 'bt', 'bu', 'bv', 'bw', 'bx', 'by', 'bz'];
+let random_symbol = symbols_alphabets[Math.floor(Math.random() * symbols_alphabets.length)];
 let message = document.getElementById('message');
-if(message != null){
-    message.innerHTML = 'Draw ' + random_symbol + ' symbol';
+if (message != null) {
+    if (random_symbol[0] === 'm') {
+        message.innerHTML = 'Draw ' + 'morse '+ random_symbol[1].toUpperCase() + ' symbol';
+    }else{
+        message.innerHTML = 'Draw ' + 'braille '+ random_symbol[1] + ' symbol';
+    }
+
 }
 
 
@@ -31,7 +36,7 @@ function draw(e) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    ctx.lineWidth = 5;
+    ctx.lineWidth = 30;
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
 
@@ -48,17 +53,25 @@ function clearCanvas() {
 
 function getCanvas() {
     const imageDataURL = canvas.toDataURL('image/png');
-
     const formData = new FormData();
     formData.append('myImage', imageDataURL);
     formData.append('symbol', random_symbol);
     fetch('/upload', {
+
         method: 'POST',
         body: formData
     }).then(response => {
         if (response.status === 200) {
-            random_symbol = symbols_chinese[Math.floor(Math.random() * symbols_chinese.length)];
-            message.innerHTML = 'Draw ' + random_symbol + ' symbol';
+            random_symbol = symbols_alphabets[Math.floor(Math.random() * symbols_alphabets.length)];
+            if (message != null) {
+                if (random_symbol[0] === 'm') {
+                    message.innerHTML = 'Draw ' + 'morse ' + random_symbol[1].toUpperCase() + ' symbol';
+                } else {
+                    message.innerHTML = 'Draw ' + 'braille ' + random_symbol[1].toUpperCase() + ' symbol';
+                }
+
+            }
+
             clearCanvas();
 
         } else {
@@ -68,7 +81,7 @@ function getCanvas() {
 
 }
 
-function prepare_model(){
+function prepare_model() {
     fetch('/prepare', {
         method: 'GET',
     }).then(response => {
@@ -89,7 +102,7 @@ function predict() {
         method: 'POST',
         body: formData
     }).then(response => response.text())
-        .then(html=>{
+        .then(html => {
             document.body.innerHTML = html;
         })
         .catch(

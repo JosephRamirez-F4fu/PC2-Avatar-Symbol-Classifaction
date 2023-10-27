@@ -53,7 +53,12 @@ def upload():
 @app.route('/prepare', methods=['GET'])
 def prepare_dataset():
     images = []
-    d = ['air', 'fire', 'water', 'earth']
+    d = ['ma', 'mb', 'mc', 'md', 'me', 'mf', 'mg', 'mh', 'mi', 'mj', 'mk', 'ml', 'mm', 'mn', 'mo', 'mp', 'mq',
+         'mr',
+         'ms', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'ba', 'bb', 'bc', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj',
+         'bk', 'bl', 'bm', 'bn', 'bo', 'bp', 'bq',
+         'br', 'bs', 'bt',
+         'bu', 'bv', 'bw', 'bx', 'by', 'bz']
     digits = []
     for digit in d:
         filelist = glob.glob('{}/*.png'.format(digit))
@@ -83,7 +88,12 @@ def download_y():
 
 # create folders for training
 def create_paths():
-    digits = ['air', 'fire', 'water', 'earth']
+    digits = ['ma', 'mb', 'mc', 'md', 'me', 'mf', 'mg', 'mh', 'mi', 'mj', 'mk', 'ml', 'mm', 'mn', 'mo', 'mp', 'mq',
+              'mr',
+              'ms', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'ba', 'bb', 'bc', 'bd', 'be', 'bf', 'bg', 'bh', 'bi',
+              'bj', 'bk', 'bl', 'bm', 'bn', 'bo', 'bp', 'bq',
+              'br', 'bs', 'bt',
+              'bu', 'bv', 'bw', 'bx', 'by', 'bz']
     for d in digits:
         if not os.path.exists(str(d)):
             os.mkdir(str(d))
@@ -104,7 +114,7 @@ def prediction_model():
 
     imagen = io.imread(tmp_file_path)
     imagen = imagen[:, :, 3]
-    size = (28, 28)
+    size = (128, 128)
     image = imagen / 255.0
     im = resize(image, size)
     im = im[:, :, np.newaxis]
@@ -116,7 +126,12 @@ def prediction_model():
     nums = out * 100
     numeros_formateados = [f'{numero:.2f}' for numero in nums]
 
-    symbols = ['air', 'fire', 'water', 'earth']
+    symbols = ['ma', 'mb', 'mc', 'md', 'me', 'mf', 'mg', 'mh', 'mi', 'mj', 'mk', 'ml', 'mm', 'mn', 'mo', 'mp', 'mq',
+               'mr',
+               'ms', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'ba', 'bb', 'bc', 'bd', 'be', 'bf', 'bg', 'bh', 'bi',
+               'bj', 'bk', 'bl', 'bm', 'bn', 'bo', 'bp', 'bq',
+               'br', 'bs', 'bt',
+               'bu', 'bv', 'bw', 'bx', 'by', 'bz']
 
     print("Image uploaded")
 
